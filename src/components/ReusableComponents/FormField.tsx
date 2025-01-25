@@ -1,5 +1,3 @@
-import React from "react";
-
 interface propTypes {
   label?: string;
   type: "text" | "email" | "password" | "checkbox" | "number";

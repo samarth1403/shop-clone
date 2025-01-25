@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import TextAreaField from "./TextAreaField";
-import Button from "./Button";
-import Section from "./Section";
 import { Rating } from "@smastrom/react-rating";
 import axios from "axios";
-import FormField from "./FormField";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { validateReview } from "../../utils/validation/Validation";
+import Button from "./Button";
+import FormField from "./FormField";
+import Section from "./Section";
+import TextAreaField from "./TextAreaField";
 
 const WriteReview = ({ type }: { type: string }) => {
   const [star, setStar] = useState<number>(0);
@@ -35,6 +35,7 @@ const WriteReview = ({ type }: { type: string }) => {
         setName("");
       }
     } catch (error) {
+      console.log(error);
       toast.error("Failed to submit review");
     }
   };
@@ -58,7 +59,7 @@ const WriteReview = ({ type }: { type: string }) => {
               type="text"
               name="name"
               value={name || ""}
-              setValue={(key, value) => {
+              setValue={(_, value) => {
                 setName(value as string);
               }}
               placeholder="Name"
@@ -88,7 +89,7 @@ const WriteReview = ({ type }: { type: string }) => {
             <TextAreaField
               name="comment"
               value={comment}
-              setValue={(key, value) => setComment(value)}
+              setValue={(_, value) => setComment(value)}
               rows={6}
               label="Comment"
               placeholder="Write a comment..."

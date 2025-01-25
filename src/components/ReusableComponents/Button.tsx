@@ -1,7 +1,6 @@
-import React from "react";
 import { MouseEventHandler, ReactNode } from "react";
-import ButtonLoader from "./ButtonLoader";
 import { Link } from "react-router-dom";
+import ButtonLoader from "./ButtonLoader";
 
 interface propTypes {
   className?: string;

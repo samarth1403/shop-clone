@@ -42,12 +42,14 @@ const AllCategories = ({
             pagination={{
               clickable: true,
             }}
-            style={{
-              "--swiper-pagination-color": "red",
-              "--swiper-pagination-bullet-size": "8px",
-              "--swiper-pagination-bullet-inactive-color": "red",
-              "--swiper-pagination-bullet-inactive-size": "6px",
-            }}
+            style={
+              {
+                "--swiper-pagination-color": "red",
+                "--swiper-pagination-bullet-size": "8px",
+                "--swiper-pagination-bullet-inactive-color": "red",
+                "--swiper-pagination-bullet-inactive-size": "6px",
+              } as React.CSSProperties
+            }
             breakpoints={{
               0: {
                 slidesPerView: 2,

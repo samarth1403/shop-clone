@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Section } from "../../ReusableComponents";
 import AllProducts from "../Home/AllProducts";
 
 const Products = () => {
-  const [activeCategory, setActiveCategory] = useState<number>(0);
   const [activeProduct, setActiveProduct] = useState<number>(0);
   return (
     <Section
@@ -16,7 +15,7 @@ const Products = () => {
       <AllProducts
         activeProduct={activeProduct}
         setActiveProduct={setActiveProduct}
-        activeCategory={activeCategory}
+        activeCategory={0}
       />
     </Section>
   );

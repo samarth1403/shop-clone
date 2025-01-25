@@ -1,16 +1,15 @@
-import React from "react";
-import { ReviewType } from "../../utils/constants/index";
 import { Rating } from "@smastrom/react-rating";
+import { ReviewType } from "../../utils/constants/index";
 
 // Swiper Imports
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
-import Section from "./Section";
+import { Swiper, SwiperSlide } from "swiper/react";
 import Heading from "./Heading";
+import Section from "./Section";
 
 interface propTypes {
   title: string;
@@ -40,7 +39,7 @@ const ReviewsComponent = ({ title, fiveStarReviews }: propTypes) => {
           grabCursor={true}
           centeredSlides={true}
           onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper: any) => console.log(swiper)}
+          onSwiper={(swiper) => console.log(swiper)}
           autoplay={{
             delay: 1000,
             disableOnInteraction: false,
@@ -96,9 +95,9 @@ const ReviewsComponent = ({ title, fiveStarReviews }: propTypes) => {
                     <p className="h5 font-bold text-white">
                       {review?.name
                         ?.split(" ")
-                        ?.map((name, index) => name.charAt(0)?.toUpperCase())
+                        ?.map((name) => name.charAt(0)?.toUpperCase())
                         ?.filter(
-                          (name, index) =>
+                          (_, index) =>
                             index === 0 ||
                             index === review?.name?.split(" ")?.length - 1
                         )

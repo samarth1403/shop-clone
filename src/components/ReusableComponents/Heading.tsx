@@ -1,9 +1,6 @@
-import React from "react";
-
 const Heading = ({
   title,
   className,
-  tag,
   text,
 }: {
   title: string;

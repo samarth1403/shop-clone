@@ -1,7 +1,6 @@
-import React from "react";
-import Section from "./Section";
-import Heading from "./Heading";
 import Collapsible from "./Collapsible";
+import Heading from "./Heading";
+import Section from "./Section";
 
 interface propTypes {
   title: string;
@@ -24,7 +23,7 @@ const FaqComponent = ({ title, faqData }: propTypes) => {
       <div className="flex-center mt-4 w-full flex-col lg:mt-8 xl:mt-12">
         <Heading title={title} />
         <div className=" flex w-60 flex-col gap-4 md:w-96 lg:w-[50rem]">
-          {faqData?.map((data, index) => (
+          {faqData?.map((data) => (
             <Collapsible
               key={data.id}
               title={data.title}

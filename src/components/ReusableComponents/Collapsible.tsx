@@ -1,5 +1,4 @@
-"use client";
-import React, { ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 
 const Collapsible = ({
   open,

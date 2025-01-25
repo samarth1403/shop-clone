@@ -1,6 +1,5 @@
-import React from "react";
-import Section from "./Section";
 import Heading from "./Heading";
+import Section from "./Section";
 
 interface propTypes {
   title: string;
@@ -26,7 +25,7 @@ const RatingsComponent = ({ title, text, fiveStarReviews }: propTypes) => {
         <Heading title={title} />
         {text && <p className="h5 mb-8 w-full text-left   ">{text}</p>}
         <div className="flex w-full flex-wrap items-start justify-around gap-8 lg:gap-8">
-          {fiveStarReviews?.map((review, index) => (
+          {fiveStarReviews?.map((review) => (
             <div
               key={review.id}
               className="flex-start flex w-48 flex-col gap-2 lg:w-80 lg:gap-4"

@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react";
-import Section from "./Section";
+import { ReactNode } from "react";
 import Heading from "./Heading";
+import Section from "./Section";
 interface stepDataTypes {
   id: string;
   title: string;
