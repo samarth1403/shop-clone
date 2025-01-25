@@ -5,6 +5,7 @@ import { Button, Section } from "../../ReusableComponents";
 
 const Orders = () => {
   const { orders, user } = useGlobalContext();
+  console.log({ orders });
   const navigate = useNavigate();
   return (
     <Section
@@ -21,9 +22,9 @@ const Orders = () => {
             orders.map((order) => (
               <div
                 key={order.id}
-                className="w-64 lg:w-xl flex flex-col items-start justify-start border border-gray-300 px-4 py-2 lg:px-6 my-4 bg-white rounded-lg gap-4 lg:gap-6 py-4 lg:py-6 "
+                className="w-78 md:w-64 lg:w-xl flex flex-col items-start justify-start border border-gray-300 px-4 lg:px-6 my-4 bg-white rounded-lg gap-4 lg:gap-6 py-4 lg:py-6 "
               >
-                <div className="w-full flex flex-row items-start justify-between flex-wrap">
+                <div className="w-full flex flex-row items-start justify-between flex-wrap gap-2">
                   <div className="w-full lg:w-1/2 flex flex-col flex-start gap-2 ">
                     <h1 className="text-lg font-bold">Order ID : {order.id}</h1>
                     <h1 className="text-lg font-bold">
@@ -39,8 +40,8 @@ const Orders = () => {
                     </h1>
                   </div>
                 </div>
-                <div className="w-full flex flex-col items-start justify-center rounded-xl">
-                  {order.products.map((product) => (
+                <div className="w-full flex flex-col items-start justify-center rounded-xl gap-4">
+                  {order?.products?.map((product) => (
                     <div
                       key={product.id}
                       className="w-full flex flex-start border border-gray-300 gap-4 lg:gap-8 p-4 rounded-xl"

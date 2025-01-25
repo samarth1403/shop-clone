@@ -6,6 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../../context/GlobalProvider";
 import { apiUrls } from "../../../services/apiUrls/apiUrls";
 import Logo from "../../../utils/assets/svg/logo.svg";
+import close from "../../../utils/assets/icons/close.svg";
+import menu from "../../../utils/assets/icons/menu.svg";
+
 import {
   constants,
   GlobalContextType,
@@ -76,6 +79,7 @@ const Header = () => {
     navigate(constants.routes.login);
     setIsUserLoggedIn(false);
     localStorage.clear();
+    setFormIsSubmitting(false);
   };
 
   return (
@@ -89,63 +93,23 @@ const Header = () => {
           <img
             src={Logo}
             alt=""
-            width={50}
-            height={50}
+            width={30}
+            height={30}
             className="object-contain"
           />
           <p className="logo_text">Shopi</p>
         </Link>
-        <div className="lg:flex-center z-20 hidden gap-4 lg:flex lg:gap-8">
-          {/* {navLinks?.map((link) => (
-            <Link
-              to={link.url}
-              key={link.id}
-              className="relative mt-2 h-8"
-              onMouseEnter={() => setIsMenuOpen(link.id)}
-              onClick={() => setActive(link.id)}
-              onMouseLeave={() => setIsMenuOpen("")}
-            >
-              <p
-                className={`text-lg font-medium ${
-                  active === link.id ? "text-primary-orange" : "text-shades-12"
-                } hover:text-primary-orange`}
-              >
-                {link.title}
-              </p>
-              {link.subLinks &&
-                link.subLinks?.length > 0 &&
-                isMenuOpen === link.id && (
-                  <div
-                    onMouseLeave={() => setIsMenuOpen("")}
-                    className="flex-start absolute left-0 top-full z-10 w-60 flex-col gap-3 rounded-lg bg-white p-4 shadow-2xl shadow-shades-6"
-                  >
-                    {link?.subLinks?.map((subLink) => (
-                      <Link
-                        to={subLink?.url}
-                        key={subLink?.id}
-                        onClick={() => {
-                          setIsMenuOpen("");
-                          // setActive(subLink.id);
-                        }}
-                      >
-                        <p
-                          className={`text-[1rem] text-shades-12 hover:text-primary-orange`}
-                        >
-                          {subLink.title}
-                        </p>
-                      </Link>
-                    ))}
-                  </div>
-                )}
-            </Link>
-          ))} */}
+        <div className="flex-center flex-row z-20 gap-6 flex">
           <Link
             to={constants.routes.orders}
-            className="flex justify-center items-center"
+            className=" justify-center items-center hidden lg:flex "
           >
             <span className="text-lg font-medium">My Orders</span>
           </Link>
-          <Link to={constants.routes.cart} className="relative mt-1">
+          <Link
+            to={constants.routes.cart}
+            className="justify-center items-center flex relative"
+          >
             <GrCart size={30} />
             {cart?.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-black text-[11px] w-6 h-6 flex flex-center text-white rounded-full p-1">
@@ -153,36 +117,35 @@ const Header = () => {
               </span>
             )}
           </Link>
-          {!isUserLoggedIn ? (
-            <div className="lg:flex-center hidden lg:flex lg:gap-4">
-              <Link to={constants.routes.login}>
-                {!isLoading ? (
-                  <button type="button" className="black_btn">
-                    Sign In
-                  </button>
-                ) : (
-                  <div className="medium-loader" />
-                )}
-              </Link>
-              <Link to={constants.routes.register}>
+          {!isUserLoggedIn && (
+            <Link to={constants.routes.login} className="hidden lg:flex">
+              {!isLoading ? (
                 <button type="button" className="black_btn">
-                  Sign Up
+                  Sign In
                 </button>
-              </Link>
-            </div>
-          ) : (
-            <div className="lg:flex-center hidden lg:flex lg:gap-4">
-              <div>
-                {!isLoading ? (
-                  <Link to={constants.routes.profile}>
-                    <button className="black_btn size-4 h-full rounded-full text-2xl ">
-                      {String(user?.name).charAt(0).toUpperCase()}
-                    </button>
-                  </Link>
-                ) : (
-                  <div className="medium-loader" />
-                )}
-              </div>
+              ) : (
+                <div className="medium-loader" />
+              )}
+            </Link>
+          )}
+          {!isUserLoggedIn && (
+            <Link to={constants.routes.register} className="hidden lg:flex">
+              <button type="button" className="outline_btn">
+                Sign Up
+              </button>
+            </Link>
+          )}
+          {!isLoading && isUserLoggedIn ? (
+            <Link to={constants.routes.profile}>
+              <button className="black_btn size-4 h-full rounded-full text-2xl ">
+                {String(user?.name).charAt(0).toUpperCase()}
+              </button>
+            </Link>
+          ) : isUserLoggedIn ? (
+            <div className="medium-loader" />
+          ) : null}
+          {isUserLoggedIn && (
+            <div className="lg:flex hidden">
               <Button
                 isFormSubmitting={isFormSubmitting}
                 className="outline_btn"
@@ -192,31 +155,20 @@ const Header = () => {
               </Button>
             </div>
           )}
+
+          <div className="flex-center gap-2  lg:hidden">
+            <img
+              src={toggle ? close : menu}
+              alt=""
+              width={35}
+              height={35}
+              className="object-contain transition-all duration-200 ease-linear lg:hidden "
+              onClick={() => setToggle(!toggle)}
+            />
+          </div>
         </div>
       </nav>
-      <div className="flex-center gap-2  lg:hidden">
-        {isUserLoggedIn && (
-          <div className="flex lg:hidden">
-            {!isLoading ? (
-              <Link to={constants.routes.profile}>
-                <button className="black_btn size-4 h-full rounded-full text-2xl ">
-                  {String(user?.name).charAt(0).toUpperCase()}
-                </button>
-              </Link>
-            ) : (
-              <div className="medium-loader" />
-            )}
-          </div>
-        )}
-        <img
-          src={toggle ? "/assets/icons/close.svg" : "/assets/icons/menu.svg"}
-          alt=""
-          width={35}
-          height={35}
-          className="object-contain transition-all duration-200 ease-linear lg:hidden "
-          onClick={() => setToggle(!toggle)}
-        />
-      </div>
+
       <nav
         className={`fixed inset-x-0 bottom-0 top-20 bg-white  ${
           toggle ? "flex" : "hidden"

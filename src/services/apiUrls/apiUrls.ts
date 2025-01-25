@@ -4,6 +4,7 @@ export const apiUrls = {
   profile: "auth/profile",
   categories: "categories",
   products: "products",
+  users: "users",
 };
 
 export const baseUrls = "https://api.escuelajs.co/api/v1    ";

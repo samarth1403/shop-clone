@@ -25,7 +25,7 @@ const AllProducts = ({
       {isLoading ? (
         <div className="medium-loader" />
       ) : (
-        <div className="flex justify-center items-start flex-row flex-wrap gap-4 lg:gap-12">
+        <div className="flex justify-center items-start flex-row flex-wrap gap-6 lg:gap-12">
           {data?.map((product, index) => (
             <ProductCard
               product={product}

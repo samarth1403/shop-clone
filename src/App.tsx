@@ -16,6 +16,7 @@ import Products from "./components/SubComponents/Products/Products";
 import { Providers } from "./context/Provider";
 import { constants } from "./utils/constants";
 import PrivateRoute from "./utils/routing/PrivateRoute";
+import Profile from "./components/SubComponents/Profile/Profile";
 
 axios.defaults.baseURL = "https://api.escuelajs.co/api/v1";
 
@@ -59,6 +60,14 @@ const App = () => {
                 element={
                   <PrivateRoute>
                     <Orders />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path={constants.routes.profile}
+                element={
+                  <PrivateRoute>
+                    <Profile />
                   </PrivateRoute>
                 }
               />

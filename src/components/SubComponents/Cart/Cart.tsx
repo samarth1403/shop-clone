@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cart, setCart, user } = useGlobalContext();
+  const { cart, setCart, user, setOrders } = useGlobalContext();
   const navigate = useNavigate();
 
   const handleRemoveProduct = (productId: number) => {
@@ -24,34 +24,25 @@ const Cart = () => {
   const handlePlaceOrder = () => {
     try {
       const orders = localStorage.getItem(constants.localStorageItems.orders);
-      if (orders) {
+      const newOrder = {
+        id: orders?.length || 0 + 1,
+        user,
+        products: cart,
+        total: cart.reduce((acc, product) => acc + product?.price, 0),
+        createdAt: new Date().toISOString(),
+        status: "pending",
+      };
+      if (orders && setOrders) {
+        setOrders((prev) => [...prev, newOrder]);
         localStorage.setItem(
           constants.localStorageItems?.orders,
-          JSON.stringify([
-            ...JSON.parse(orders),
-            {
-              id: JSON.parse(orders)?.length + 1,
-              user,
-              products: cart,
-              total: cart.reduce((acc, product) => acc + product?.price, 0),
-              createdAt: new Date().toISOString(),
-              status: "pending",
-            },
-          ])
+          JSON.stringify([...JSON.parse(orders), newOrder])
         );
       } else {
+        setOrders([newOrder]);
         localStorage.setItem(
           constants.localStorageItems?.orders,
-          JSON.stringify([
-            {
-              id: 1,
-              user,
-              products: cart,
-              total: cart.reduce((acc, product) => acc + product?.price, 0),
-              createdAt: new Date().toISOString(),
-              status: "pending",
-            },
-          ])
+          JSON.stringify([newOrder])
         );
       }
       setCart([]);

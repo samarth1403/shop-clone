@@ -41,7 +41,7 @@ const ProductCard = ({ product }: ProductProps) => {
   const isProductInCart = cart?.find((item) => item?.id === product?.id);
 
   return (
-    <div className=" flex flex-center flex-col gap-2 w-62 bg-white rounded-xl p-3 shadow-md">
+    <div className=" flex flex-center flex-col gap-2  w-72 lg:w-62 bg-white rounded-xl p-3 shadow-md">
       <div
         className="flex w-full flex-col flex-center cursor-pointer"
         onClick={() => {
@@ -53,6 +53,7 @@ const ProductCard = ({ product }: ProductProps) => {
           className={`w-full object-contain rounded-xl hover:scale-105 duration-500 ${
             product?.id % 2 === 0 ? "hover:rotate-4" : "hover:-rotate-4"
           } `}
+          loading="lazy"
         />
         <div className="relative flex flex-center flex-col gap-2 pb-2 p-4">
           <h1 className={` text-left`}>{product?.title}</h1>

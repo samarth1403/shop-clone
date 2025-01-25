@@ -23,95 +23,7 @@ export const mobileNavLinks = [
 ];
 
 export const footerLinks = [
-  {
-    id: "0",
-    title: "Resume",
-    subLinks: [
-      {
-        id: "2",
-        title: "Resume Builder",
-        uri: "/",
-      },
-      {
-        id: "0",
-        title: "Resume Templates",
-        uri: "/resume/all-templates",
-      },
-      {
-        id: "3",
-        title: "How to Write a Resume",
-        uri: "/resume/how-to-write-a-resume",
-      },
-    ],
-  },
-  {
-    id: "1",
-    title: "Cover Letter",
-    subLinks: [
-      {
-        id: "2",
-        title: "Cover Letter Builder",
-        uri: "/cover-letter/builder",
-      },
-      {
-        id: "0",
-        title: "Cover Letter Templates",
-        uri: "/cover-letter/all-templates",
-      },
-      {
-        id: "3",
-        title: "How to Write a Cover Letter",
-        uri: "/cover-letter/how-to-write-a-cover-letter",
-      },
-    ],
-  },
-  {
-    id: "3",
-    title: "Resources",
-    subLinks: [
-      {
-        id: "0",
-        title: "Blogs",
-        uri: "/blogs",
-      },
-      {
-        id: "1",
-        title: "FAQ",
-        uri: "/faq",
-      },
-      {
-        id: "2",
-        title: "Contact",
-        uri: "/contact",
-      },
-      {
-        id: "3",
-        title: "About",
-        uri: "/about",
-      },
-    ],
-  },
-  {
-    id: "4",
-    title: "Legal",
-    subLinks: [
-      {
-        id: "0",
-        title: "Privacy Policy",
-        uri: "/privacy-policy",
-      },
-      {
-        id: "1",
-        title: "Terms of Service",
-        uri: "/terms-of-service",
-      },
-      {
-        id: "2",
-        title: "Cookie Policy",
-        uri: "/cookie-policy",
-      },
-    ],
-  },
+  
 ];
 
 export type userInfoType = {
@@ -120,6 +32,7 @@ export type userInfoType = {
   email: string;
   role: string;
   avatar: string;
+  password?: string;
 };
 
 export type GlobalContextType = {
@@ -129,8 +42,8 @@ export type GlobalContextType = {
   setUser: React.Dispatch<React.SetStateAction<userInfoType>>;
   cart: ProductInfoType[];
   setCart: React.Dispatch<React.SetStateAction<ProductInfoType[]>>;
-  orders?: OrderInfoType[];
-  setOrders?: React.Dispatch<React.SetStateAction<OrderInfoType[]>>;
+  orders: OrderInfoType[];
+  setOrders: React.Dispatch<React.SetStateAction<OrderInfoType[]>>;
   authLoading?: boolean;
   setAuthLoading ?: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -176,6 +89,8 @@ export const initialGlobalContext: GlobalContextType = {
   setUser: () => {},
   cart: [],
   setCart: () => {},
+  orders: [],
+  setOrders: () => {},
 };
 
 export interface formDataTypes {
@@ -214,5 +129,6 @@ export const constants = {
     getAllCategories: "getAllCategories",
     getAllProducts: "getAllProducts",
     getProductByCategoryId: "getProductByCategoryId",
+    getUserByUserId: "getUserByUserId",
   },
 };
