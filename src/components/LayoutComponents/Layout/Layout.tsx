@@ -8,7 +8,6 @@ const Layout = () => {
       <div className="main">
         <div className="gradient" />
       </div>
-
       <main className="app">
         <Header />
         <Toaster />

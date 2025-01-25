@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { BsCartCheck } from "react-icons/bs";
+import { BsArrowLeft, BsCartCheck } from "react-icons/bs";
 import { GrCart } from "react-icons/gr";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGlobalContext } from "../../../context/GlobalProvider";
 import { GetProductByProductId } from "../../../services/api/GetProductByProductId";
 import { constants, GlobalContextType } from "../../../utils/constants";
-import { Section } from "../../ReusableComponents";
+import { Button, Section } from "../../ReusableComponents";
 
 const ProductDetails = () => {
   const navigate = useNavigate();
@@ -60,27 +60,36 @@ const ProductDetails = () => {
               <h1 className={`h5 font-bold text-left`}>{data?.title}</h1>
               <p className={` text-left`}>{data?.description}</p>
               <span className="text-left h4 font-bold">{` $ ${data?.price}`}</span>
-              <div
-                className={`w-56 flex justify-center items-center gap-2 px-4 py-3 rounded-md ${
-                  isProductInCart ? "bg-green-500" : "bg-black cursor-pointer"
-                }`}
-                onClick={isProductInCart ? () => {} : handleProductAdd}
-              >
-                {isProductInCart ? (
-                  <span className="flex items-center gap-4 text-white font-bold ">
-                    <BsCartCheck
-                      color="white"
-                      size={22}
-                      className="font-bold"
-                    />
-                    Added to Card
-                  </span>
-                ) : (
-                  <span className="flex items-center gap-4 text-white font-bold ">
-                    <GrCart color="white" size={18} className="font-bold" />
-                    Add to Cart
-                  </span>
-                )}
+              <div className="w-full flex flex-row justify-start items-center gap-4">
+                <Button
+                  onClick={() => navigate(constants.routes.products)}
+                  className="w-56"
+                  iconBefore={<BsArrowLeft className="font-bold" size={20} />}
+                >
+                  Go Back
+                </Button>
+                <div
+                  className={`w-56 flex justify-center items-center gap-2 px-4 py-3 rounded-xl ${
+                    isProductInCart ? "bg-green-500" : "bg-black cursor-pointer"
+                  }`}
+                  onClick={isProductInCart ? () => {} : handleProductAdd}
+                >
+                  {isProductInCart ? (
+                    <span className="flex items-center gap-4 text-white font-bold ">
+                      <BsCartCheck
+                        color="white"
+                        size={22}
+                        className="font-bold"
+                      />
+                      Added to Card
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-4 text-white font-bold ">
+                      <GrCart color="white" size={18} className="font-bold" />
+                      Add to Cart
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
           </div>

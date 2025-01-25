@@ -41,7 +41,7 @@ const ProductCard = ({ product }: ProductProps) => {
   const isProductInCart = cart?.find((item) => item?.id === product?.id);
 
   return (
-    <div className=" flex flex-center flex-col gap-2 w-60 bg-white rounded-xl p-3 shadow-md">
+    <div className=" flex flex-center flex-col gap-2 w-62 bg-white rounded-xl p-3 shadow-md">
       <div
         className="flex w-full flex-col flex-center cursor-pointer"
         onClick={() => {
@@ -68,7 +68,7 @@ const ProductCard = ({ product }: ProductProps) => {
           onClick={!isProductInCart ? handleProductAdd : () => {}}
         >
           {isProductInCart ? (
-            <BsCartCheck color="white" size={18} className="font-bold" />
+            <BsCartCheck color="white" size={22} className="font-bold" />
           ) : (
             <GrCart color="white" size={18} className="font-bold" />
           )}

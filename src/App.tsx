@@ -8,16 +8,20 @@ import {
 } from "react-router-dom";
 import Layout from "./components/LayoutComponents/Layout/Layout";
 import { Home, Login, Register } from "./components/SubComponents";
+import Cart from "./components/SubComponents/Cart/Cart";
 import ProductDetails from "./components/SubComponents/Home/ProductDetails";
+import OrderPlaced from "./components/SubComponents/OrderPlaced/OrderPlaced";
+import Orders from "./components/SubComponents/Orders/Orders";
 import Products from "./components/SubComponents/Products/Products";
 import { Providers } from "./context/Provider";
 import { constants } from "./utils/constants";
-import Cart from "./components/SubComponents/Cart/Cart";
+import PrivateRoute from "./utils/routing/PrivateRoute";
 
 axios.defaults.baseURL = "https://api.escuelajs.co/api/v1";
 
 const App = () => {
   const queryClient = new QueryClient();
+
   return (
     <Providers>
       <QueryClientProvider client={queryClient}>
@@ -27,7 +31,14 @@ const App = () => {
               <Route index element={<Home />} />
               <Route path={constants.routes.login} element={<Login />} />
               <Route path={constants.routes.register} element={<Register />} />
-              <Route path={constants.routes.cart} element={<Cart />} />
+              <Route
+                path={constants.routes.cart}
+                element={
+                  <PrivateRoute>
+                    <Cart />
+                  </PrivateRoute>
+                }
+              />
               <Route path={`${constants.routes.products}`} element={<Outlet />}>
                 <Route index element={<Products />} />
                 <Route
@@ -35,6 +46,22 @@ const App = () => {
                   element={<ProductDetails />}
                 />
               </Route>
+              <Route
+                path={`${constants.routes.orderPlaced}`}
+                element={
+                  <PrivateRoute>
+                    <OrderPlaced />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path={constants.routes.orders}
+                element={
+                  <PrivateRoute>
+                    <Orders />
+                  </PrivateRoute>
+                }
+              />
             </Route>
           </Routes>
         </Router>

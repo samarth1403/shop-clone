@@ -129,6 +129,10 @@ export type GlobalContextType = {
   setUser: React.Dispatch<React.SetStateAction<userInfoType>>;
   cart: ProductInfoType[];
   setCart: React.Dispatch<React.SetStateAction<ProductInfoType[]>>;
+  orders?: OrderInfoType[];
+  setOrders?: React.Dispatch<React.SetStateAction<OrderInfoType[]>>;
+  authLoading?: boolean;
+  setAuthLoading ?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type CategoryInfoType = {
@@ -146,6 +150,15 @@ export type ProductInfoType = {
   description: string;
   category: CategoryInfoType;
   images: string[];
+};
+
+export type OrderInfoType = {
+  id: number;
+  user: userInfoType;
+  products: ProductInfoType[];
+  total: number;
+  createdAt: string;
+  status: string;
 };
 
 export const initialUserInfo: userInfoType = {
@@ -195,6 +208,7 @@ export const constants = {
     orders: "/orders",
     products: "/products",
     productDetails: ":productId",
+    orderPlaced: "/order-placed",
   },
   queryKeys: {
     getAllCategories: "getAllCategories",

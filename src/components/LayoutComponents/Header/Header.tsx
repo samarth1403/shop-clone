@@ -1,5 +1,5 @@
 import axios, { HttpStatusCode } from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { GrCart } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
@@ -37,35 +37,36 @@ const Header = () => {
   }
 
   // --- Getting User Profile ---
-  useEffect(() => {
-    setIsLoading(true);
-    const getCurrentUser = async () => {
-      try {
-        const { data, status } = await axios.get(apiUrls.profile, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+
+  const getCurrentUser = useCallback(async () => {
+    try {
+      const { data, status } = await axios.get(apiUrls.profile, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (status === HttpStatusCode.Ok) {
+        setUser({
+          name: data?.name,
+          email: data?.email,
+          role: data?.role,
+          avatar: data?.avatar,
+          id: data?.id,
         });
-        if (status === HttpStatusCode.Ok) {
-          setUser({
-            name: data?.name,
-            email: data?.email,
-            role: data?.role,
-            avatar: data?.avatar,
-            id: data?.id,
-          });
-          setIsUserLoggedIn(true);
-        }
-      } catch (error: unknown) {
-        console.log(error);
-        setIsUserLoggedIn(false);
-        setUser({} as userInfoType);
-      } finally {
-        setIsLoading(false);
+        setIsUserLoggedIn(true);
       }
-    };
+    } catch (error: unknown) {
+      console.log(error);
+      setIsUserLoggedIn(false);
+      setUser({} as userInfoType);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [setIsUserLoggedIn, setUser, token]);
+
+  useEffect(() => {
     getCurrentUser();
-  }, [isUserLoggedIn, setUser, setIsUserLoggedIn, token]);
+  }, [getCurrentUser]);
 
   // --- Logout ---
   const handleLogout = async () => {
@@ -74,6 +75,7 @@ const Header = () => {
     localStorage.removeItem(constants.localStorageItems.access_token);
     navigate(constants.routes.login);
     setIsUserLoggedIn(false);
+    localStorage.clear();
   };
 
   return (
