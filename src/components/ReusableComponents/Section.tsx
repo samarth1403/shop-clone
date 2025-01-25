@@ -1,14 +1,10 @@
+import { ReactNode } from "react";
 import PlusSvg from "../../utils/assets/svg/PlusSvg";
-import React, { ReactNode } from "react";
 
 const Section = ({
   className,
-  id,
-  crosses,
-  crossesOffset,
   children,
   childrenClassName,
-  customPaddings,
 }: {
   className: string;
   crosses: boolean;

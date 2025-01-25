@@ -6,7 +6,7 @@ interface singInPropTypes {
 }
 
 interface signUpPropTypes {
-  username?: string;
+  name?: string;
   email: string;
   password: string;
 }
@@ -51,11 +51,11 @@ export const validateResetPassword = (formData: { newPassword: string }) => {
 };
 
 export const validateSignUp = (formData: signUpPropTypes) => {
-  const { email, password, username } = formData;
+  const { email, password, name } = formData;
   const usernameV = new Validator({
-    value: username!,
-    key: "username",
-    field: "Username",
+    value: name!,
+    key: "name",
+    field: "Name",
   }).required();
   const emailV = new Validator({
     value: email,

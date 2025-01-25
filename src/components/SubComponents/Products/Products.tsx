@@ -1,9 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Section } from "../../ReusableComponents";
-import AllCategories from "./AllCategories";
-import AllProducts from "./AllProducts";
+import AllProducts from "../Home/AllProducts";
 
-const Home = () => {
+const Products = () => {
   const [activeCategory, setActiveCategory] = useState<number>(0);
   const [activeProduct, setActiveProduct] = useState<number>(0);
   return (
@@ -14,10 +13,6 @@ const Home = () => {
       customPaddings
       id="hero"
     >
-      <AllCategories
-        activeCategory={activeCategory}
-        setActiveCategory={setActiveCategory}
-      />
       <AllProducts
         activeProduct={activeProduct}
         setActiveProduct={setActiveProduct}
@@ -27,4 +22,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Products;

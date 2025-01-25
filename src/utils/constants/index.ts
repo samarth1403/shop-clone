@@ -1,4 +1,3 @@
-
 export const VERIFY = "VERIFY";
 export const RESET_PASSWORD = "RESET_PASSWORD";
 export const SIGN_IN_SUCCESS_MESSAGE = "Signed in successfully";
@@ -10,25 +9,8 @@ export const UNKNOW_ERROR = "Unknown error occurred";
 export const navLinks = [
   {
     id: "0",
-    title: "Ecommerce",
-    url: "/",
-    subLinks: [
-      {
-        id: "2",
-        title: "Resume Builder",
-        url: "/",
-      },
-      {
-        id: "0",
-        title: "Resume Templates",
-        url: "/resume/all-templates",
-      },
-      {
-        id: "3",
-        title: "How to Write a Resume",
-        url: "/resume/how-to-write-a-resume",
-      },
-    ],
+    title: "My Orders",
+    url: "/orders",
   },
 ];
 
@@ -133,26 +115,45 @@ export const footerLinks = [
 ];
 
 export type userInfoType = {
-  username: string;
+  id: number;
+  name: string;
   email: string;
-  isAdmin: boolean;
-  isVerified: boolean;
-  userId: string;
+  role: string;
+  avatar: string;
 };
 
 export type GlobalContextType = {
   isUserLoggedIn: boolean;
-  user: userInfoType | null;
-  setIsUserLoggedIn: (isLoggedIn: boolean) => void;
-  setUser: (user: userInfoType) => void;
+  user: userInfoType;
+  setIsUserLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  setUser: React.Dispatch<React.SetStateAction<userInfoType>>;
+  cart: ProductInfoType[];
+  setCart: React.Dispatch<React.SetStateAction<ProductInfoType[]>>;
+};
+
+export type CategoryInfoType = {
+  id: number;
+  name: string;
+  image?: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ProductInfoType = {
+  id: number;
+  title?: string;
+  price: number;
+  description: string;
+  category: CategoryInfoType;
+  images: string[];
 };
 
 export const initialUserInfo: userInfoType = {
-  username: "",
+  id: 0,
+  name: "",
   email: "",
-  isAdmin: false,
-  isVerified: false,
-  userId: "",
+  role: "",
+  avatar: "",
 };
 
 export const initialGlobalContext: GlobalContextType = {
@@ -160,10 +161,12 @@ export const initialGlobalContext: GlobalContextType = {
   user: initialUserInfo,
   setIsUserLoggedIn: () => {},
   setUser: () => {},
+  cart: [],
+  setCart: () => {},
 };
 
 export interface formDataTypes {
-  username?: string;
+  name?: string;
   email: string;
   password: string;
 }
@@ -172,4 +175,30 @@ export type ReviewType = {
   name: string;
   rating: number;
   comment: string;
+};
+
+export const constants = {
+  localStorageItems: {
+    access_token: "access_token",
+    refresh_token: "refresh_token",
+    orders: "orders",
+    user: "user",
+    cart: "cart",
+  },
+  routes: {
+    login: "/login",
+    register: "/register",
+    profile: "/profile",
+    home: "/",
+    cart: "/cart",
+    checkout: "/checkout",
+    orders: "/orders",
+    products: "/products",
+    productDetails: ":productId",
+  },
+  queryKeys: {
+    getAllCategories: "getAllCategories",
+    getAllProducts: "getAllProducts",
+    getProductByCategoryId: "getProductByCategoryId",
+  },
 };

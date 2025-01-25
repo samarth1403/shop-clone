@@ -24,7 +24,7 @@
   --color-shades-10: #303030;
   --color-shades-11: #202020;
   --color-shades-12: #000000;
-  
+
   --color-light-green: #8bc34a;
   --color-dark-green: #4caf50;
   --color-light-yellow: #ffeb3b;
@@ -84,15 +84,15 @@
   pointer-events: none;
 }
 
-.main:before {
-  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);
+/* .main:before {
+  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #f5f5f5 100%);
   position: absolute;
   content: "";
   z-index: 2;
   width: 100%;
   height: 100%;
   top: 0;
-}
+} */
 
 .main:after {
   content: "";
