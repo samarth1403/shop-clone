@@ -17,14 +17,12 @@ export const navLinks = [
 export const mobileNavLinks = [
   {
     id: "0",
-    title: "Resume Builder",
-    url: "/",
+    title: "My Orders",
+    url: "/orders",
   },
 ];
 
-export const footerLinks = [
-  
-];
+export const footerLinks = [];
 
 export type userInfoType = {
   id: number;
@@ -45,7 +43,7 @@ export type GlobalContextType = {
   orders: OrderInfoType[];
   setOrders: React.Dispatch<React.SetStateAction<OrderInfoType[]>>;
   authLoading?: boolean;
-  setAuthLoading ?: React.Dispatch<React.SetStateAction<boolean>>;
+  setAuthLoading?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type CategoryInfoType = {
