@@ -38,10 +38,10 @@ const SearchComponent = <T,>({
   };
 
   return (
-    <div className="flex-center mt-4 w-full flex-col ">
-      <div className=" w-72 lg:w-84 xl:w-md  flex flex-row justify-center items-center flex-wrap">
+    <div className="flex-center flex-col ">
+      <div className=" w-54 md:w-72 lg:w-84 xl:w-md  flex flex-row justify-center items-center flex-wrap">
         <FormField
-          placeholder="Search for a product ....."
+          placeholder="Search by product name , category , price ....."
           value={search}
           setValue={(_, value) => handleSearch(value as string)}
           name="search"

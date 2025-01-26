@@ -52,15 +52,17 @@ const ProductCard = ({ product }: ProductProps) => {
           <img
             src={product?.images[0]}
             className={` w-full object-contain
-              ${product?.id % 2 === 0 ? "hover:rotate-0" : "hover:-rotate-0"} 
             transition-opacity duration-1100 ease-in-out group-hover:opacity-0 `}
             loading="lazy"
           />
           <img
             src={product?.images[1]}
-            className={`absolute inset-0 w-full  object-contain ${
-              product?.id % 2 === 0 ? "hover:rotate-0" : "hover:-rotate-0"
-            } transition-opacity duration-1100 ease-in-out opacity-0 group-hover:opacity-100 `}
+            className={`absolute inset-0 w-full  object-contain transition-opacity duration-1100 ease-in-out opacity-0 group-hover:opacity-100 `}
+            loading="lazy"
+          />
+          <img
+            src={product?.images[2]}
+            className={`absolute inset-0 w-full  object-contain transition-opacity duration-1100 ease-in-out opacity-0 group-hover:opacity-0 group-hover:delay-100  `}
             loading="lazy"
           />
         </div>

@@ -1,12 +1,21 @@
 import axios, { HttpStatusCode } from "axios";
-import { apiUrls } from "../apiUrls/apiUrls";
 import { CategoryInfoType } from "../../utils/constants";
+import { apiUrls } from "../apiUrls/apiUrls";
 
 export const GetAllCategories = async () => {
   try {
     const { status, data } = await axios.get(apiUrls.categories);
     if (status === HttpStatusCode.Ok) {
-      return (data as CategoryInfoType[])?.slice(0, 5);
+      return (
+        [
+          {
+            id: 0,
+            name: "All",
+            image: "",
+          },
+          ...data,
+        ] as CategoryInfoType[]
+      )?.slice(0, 6);
     }
   } catch (error) {
     console.log(error);

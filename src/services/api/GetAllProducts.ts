@@ -23,7 +23,7 @@ export const GetAllProducts = async ({ params }: ParamsType) => {
       : `${apiUrls.products}`;
     const { status, data } = await axios.get(fullUrl);
     if (status === HttpStatusCode.Ok) {
-      return (data as ProductInfoType[])?.slice(0, 36);
+      return data as ProductInfoType[];
     }
   } catch (error) {
     console.log(error);

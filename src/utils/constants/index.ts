@@ -91,6 +91,11 @@ export const initialGlobalContext: GlobalContextType = {
   setOrders: () => {},
 };
 
+export interface PriceFiltersType {
+  minPrice: number;
+  maxPrice: number;
+  priceFilter: "lowToHigh" | "highToLow" | "none";
+}
 export interface formDataTypes {
   name?: string;
   email: string;

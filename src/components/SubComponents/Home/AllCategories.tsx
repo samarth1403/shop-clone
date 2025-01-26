@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import allImage from "../../../utils/assets/images/all.jpg";
 
 interface AllCategoriesProps {
   activeCategory: number;
@@ -24,7 +25,7 @@ const AllCategories = ({
     queryFn: GetAllCategories,
   });
   return (
-    <div className="flex-center mt-4 w-full flex-col lg:mt-4 xl:mt-6 ">
+    <div className="flex-center mt-2 w-full flex-col lg:mt-2 xl:mt-2 ">
       <div className="w-full flex flex-row justify-center items-center flex-wrap">
         {isLoading ? (
           <div className="medium-loader" />
@@ -82,7 +83,9 @@ const AllCategories = ({
             }}
           >
             {data
-              ?.filter((item) => item?.image?.includes("https://"))
+              ?.filter(
+                (item) => item?.id === 0 || item?.image?.includes("https://")
+              )
               ?.map((category: CategoryInfoType, index: number) => (
                 <SwiperSlide key={index} className="my-[2rem] xl:my-[2.5rem]">
                   <div
@@ -91,7 +94,7 @@ const AllCategories = ({
                     onClick={() => setActiveCategory(category?.id)}
                   >
                     <img
-                      src={category?.image}
+                      src={category?.image || allImage}
                       className="w-26 md:w-28 lg:w-32 object-contain rounded-full hover:shadow-2xl hover:scale-105 duration-500 shadow-shades-6  "
                     />
                     <div className="relative flex flex-center flex-col gap-2 pb-2">

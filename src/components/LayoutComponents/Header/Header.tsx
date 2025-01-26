@@ -25,6 +25,7 @@ const Header = () => {
     setIsUserLoggedIn,
     setUser,
     cart,
+    setCart,
   }: GlobalContextType = useGlobalContext();
   const navigate = useNavigate();
   const [isFormSubmitting, setFormIsSubmitting] = useState<boolean>(false);
@@ -78,6 +79,7 @@ const Header = () => {
     localStorage.removeItem(constants.localStorageItems.access_token);
     navigate(constants.routes.login);
     setIsUserLoggedIn(false);
+    setCart([]);
     localStorage.clear();
     setFormIsSubmitting(false);
   };
