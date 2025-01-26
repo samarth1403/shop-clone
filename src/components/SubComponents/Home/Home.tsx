@@ -8,7 +8,7 @@ const Home = () => {
   const [activeProduct, setActiveProduct] = useState<number>(0);
   return (
     <Section
-      className="mt-12 w-full"
+      className="mt-6 w-full"
       crosses
       crossesOffset="lg:translate-y-[5.25rem]"
       customPaddings

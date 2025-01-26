@@ -24,7 +24,7 @@ const AllCategories = ({
     queryFn: GetAllCategories,
   });
   return (
-    <div className="flex-center mt-4 w-full flex-col lg:mt-4 xl:mt-6">
+    <div className="flex-center mt-4 w-full flex-col lg:mt-4 xl:mt-6 ">
       <div className="w-full flex flex-row justify-center items-center flex-wrap">
         {isLoading ? (
           <div className="medium-loader" />
@@ -44,9 +44,9 @@ const AllCategories = ({
             }}
             style={
               {
-                "--swiper-pagination-color": "red",
+                "--swiper-pagination-color": "black",
                 "--swiper-pagination-bullet-size": "8px",
-                "--swiper-pagination-bullet-inactive-color": "red",
+                "--swiper-pagination-bullet-inactive-color": "black",
                 "--swiper-pagination-bullet-inactive-size": "6px",
               } as React.CSSProperties
             }
@@ -84,7 +84,7 @@ const AllCategories = ({
             {data
               ?.filter((item) => item?.image?.includes("https://"))
               ?.map((category: CategoryInfoType, index: number) => (
-                <SwiperSlide key={index} className="mb-[2rem]">
+                <SwiperSlide key={index} className="my-[2rem] xl:my-[2.5rem]">
                   <div
                     className=" flex flex-center flex-col gap-4 cursor-pointer "
                     key={category.id}
@@ -92,7 +92,7 @@ const AllCategories = ({
                   >
                     <img
                       src={category?.image}
-                      className="w-26 md:w-28 lg:w-36 object-contain rounded-full hover:shadow-2xl hover:scale-105 duration-500 shadow-shades-6  "
+                      className="w-26 md:w-28 lg:w-32 object-contain rounded-full hover:shadow-2xl hover:scale-105 duration-500 shadow-shades-6  "
                     />
                     <div className="relative flex flex-center flex-col gap-2 pb-2">
                       <h1

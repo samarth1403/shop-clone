@@ -14,6 +14,8 @@ interface propTypes {
   isRequired?: boolean;
   iconPath?: string;
   iconFromTop?: string;
+  iconPosition?: "left" | "right";
+  iconComponent?: JSX.Element;
 }
 
 const FormField = ({
@@ -29,6 +31,8 @@ const FormField = ({
   isRequired,
   iconPath,
   iconFromTop,
+  iconComponent,
+  iconPosition,
 }: propTypes) => {
   return (
     <div
@@ -64,6 +68,15 @@ const FormField = ({
             iconFromTop || (error ? "top-10" : "top-1/2")
           } object-contain`}
         />
+      )}
+      {iconComponent && (
+        <div
+          className={`absolute 
+               ${iconPosition === "left" ? "left-4" : "right-4"}
+              ${iconFromTop || (error ? "top-10" : "top-1/2")}`}
+        >
+          {iconComponent}
+        </div>
       )}
       {error && (
         <span className="text-[0.85rem] text-red-700">{error.message}</span>

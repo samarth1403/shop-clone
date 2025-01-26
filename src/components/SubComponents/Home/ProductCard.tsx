@@ -1,5 +1,6 @@
 import React from "react";
 import toast from "react-hot-toast";
+import { BsCartCheck } from "react-icons/bs";
 import { GrCart } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../../context/GlobalProvider";
@@ -8,7 +9,6 @@ import {
   GlobalContextType,
   ProductInfoType,
 } from "../../../utils/constants";
-import { BsCartCheck } from "react-icons/bs";
 
 interface ProductProps {
   product: ProductInfoType;
@@ -48,13 +48,22 @@ const ProductCard = ({ product }: ProductProps) => {
           navigate(`${constants.routes.products}/${product?.id}`);
         }}
       >
-        <img
-          src={product?.images[0]}
-          className={`w-full object-contain rounded-xl hover:scale-105 duration-500 ${
-            product?.id % 2 === 0 ? "hover:rotate-4" : "hover:-rotate-4"
-          } `}
-          loading="lazy"
-        />
+        <div className="relative w-full group overflow-hidden rounded-xl ">
+          <img
+            src={product?.images[0]}
+            className={` w-full object-contain
+              ${product?.id % 2 === 0 ? "hover:rotate-0" : "hover:-rotate-0"} 
+            transition-opacity duration-1100 ease-in-out group-hover:opacity-0 `}
+            loading="lazy"
+          />
+          <img
+            src={product?.images[1]}
+            className={`absolute inset-0 w-full  object-contain ${
+              product?.id % 2 === 0 ? "hover:rotate-0" : "hover:-rotate-0"
+            } transition-opacity duration-1100 ease-in-out opacity-0 group-hover:opacity-100 `}
+            loading="lazy"
+          />
+        </div>
         <div className="relative flex flex-center flex-col gap-2 pb-2 p-4">
           <h1 className={` text-left`}>{product?.title}</h1>
         </div>
